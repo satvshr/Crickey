@@ -1,9 +1,8 @@
-import os, discord, csv
+import discord, csv
 
 def read_csv_file(csv_file_path):
     with open(csv_file_path, 'r') as file:
         csv_reader = csv.reader(file)
-        print(csv_reader)
         for row in csv_reader:
             return row
 
@@ -11,12 +10,14 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
-bot_token = os.environ['BOT_TOKEN']
+bot_token = 'MTEzMTIxMzc4NDcwMzMwMzc2MA.Goomqr.Z4GvdibqL9aTfQgM_f54FAPDjnxWlyGF7EVSZc'
 
 is_On = False
 
 @client.event
 async def on_ready():
+    with open("scraper.py") as f:
+        exec(f.read())
     print(f'Logged in as {client.user.name}')
 
 @client.event
@@ -34,7 +35,10 @@ async def on_message(message):
         if is_On:
             await message.channel.send('Fetching the live scores...')
             all_rows = read_csv_file('liveScores.csv')
-            await message.channel.send(f"{all_rows[0]} \n {all_rows[1]} \n {all_rows[2]}")
+            if all_rows == None:
+                await message.channel.send('No live scores available!')
+            else:
+                await message.channel.send(f"{all_rows[0]} \n {all_rows[1]} \n {all_rows[2]}")
         else:
             await message.channel.send('Please start the bot first!')
 

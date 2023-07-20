@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
-import time
 
 def write_csv_file(csv_file_path, data):
     file = open(csv_file_path, 'w', newline='')

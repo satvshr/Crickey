@@ -1,14 +1,11 @@
 import os, discord, csv
 
 def read_csv_file(csv_file_path):
-        all_rows = []
-        with open(csv_file_path, 'r') as file:
-            csv_reader = csv.reader(file)
-
-            for row in csv_reader:
-                all_rows.append(row)
-
-        return all_rows
+    with open(csv_file_path, 'r') as file:
+        csv_reader = csv.reader(file)
+        print(csv_reader)
+        for row in csv_reader:
+            return row
 
 intents = discord.Intents.default()
 intents.message_content = True

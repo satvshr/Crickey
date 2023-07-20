@@ -8,27 +8,24 @@ def write_csv_file(csv_file_path, data):
     writer = csv.writer(file)
     writer.writerow(data)
     file.close()
-while(1):
 
-    url = 'https://www.espncricinfo.com/live-cricket-score'
-    response = requests.get(url)
-    detailList = []
-    if response:
-        html_content = response.content
-        soup = BeautifulSoup(html_content, 'html.parser')
-        match = soup.find('div', class_='ds-px-4 ds-py-3')
-        summary = soup.find('p', class_='ds-text-tight-s ds-font-regular ds-truncate ds-text-typo').text
-        details = match.find_all('div', class_='ci-team-score ds-flex ds-justify-between ds-items-center ds-text-typo ds-my-1')
-        for detail in details:
-            detailList.append(detail.text)
-        detailList.append(summary)
-        write_csv_file('liveScores.csv', detailList)
-        for detail in detailList:
-            print(detail)
-            
-        print()
 
-        time.sleep(10)
-    else:
-        print("Failed to fetch the webpage.")
-        break
+url = 'https://www.espncricinfo.com/live-cricket-score'
+response = requests.get(url)
+detailList = []
+if response:
+    html_content = response.content
+    soup = BeautifulSoup(html_content, 'html.parser')
+    match = soup.find('div', class_='ds-px-4 ds-py-3')
+    summary = soup.find('p', class_='ds-text-tight-s ds-font-regular ds-truncate ds-text-typo').text
+    details = match.find_all('div', class_='ci-team-score ds-flex ds-justify-between ds-items-center ds-text-typo ds-my-1')
+    for detail in details:
+        detailList.append(detail.text)
+    detailList.append(summary)
+    write_csv_file('liveScores.csv', detailList)
+    for detail in detailList:
+        print(detail)
+        
+else:
+    print("Failed to fetch the webpage.")
+    

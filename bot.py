@@ -10,7 +10,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
-bot_token = 'MTEzMTIxMzc4NDcwMzMwMzc2MA.Goomqr.Z4GvdibqL9aTfQgM_f54FAPDjnxWlyGF7EVSZc'
+bot_token = 'MTEzMTIxMzc4NDcwMzMwMzc2MA.GKNGkb.oRvN45_wFRrXay02w8MuRZrM2YbCxZ3_oWasoo'
 
 is_On = False
 

@@ -1,4 +1,14 @@
-import os, discord
+import os, discord, csv
+
+def read_csv_file(csv_file_path):
+        all_rows = []
+        with open(csv_file_path, 'r') as file:
+            csv_reader = csv.reader(file)
+
+            for row in csv_reader:
+                all_rows.append(row)
+
+        return all_rows
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -25,6 +35,8 @@ async def on_message(message):
 
     elif message.content == '!livescore':
         if is_On:
-            await message.channel.send('I am currently on!')
+            await message.channel.send('Fetching the live scores...')
+            all_rows = read_csv_file('liveScores.csv')
+            await message.channel.send(f"{all_rows[0]} \n {all_rows[1]} \n {all_rows[2]}")
 
 client.run(bot_token)

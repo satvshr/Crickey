@@ -38,5 +38,9 @@ async def on_message(message):
             await message.channel.send('Fetching the live scores...')
             all_rows = read_csv_file('liveScores.csv')
             await message.channel.send(f"{all_rows[0]} \n {all_rows[1]} \n {all_rows[2]}")
+        else:
+            await message.channel.send('Please start the bot first!')
 
+    elif message.content == '!help':
+        await message.channel.send('Commands: \n !start - start the bot \n !stop - stop the bot \n !livescore - get the live scores')
 client.run(bot_token)

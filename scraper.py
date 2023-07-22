@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
-import time
+from datetime import datetime
 
 def write_csv_file(csv_file_path, data):
-    file = open(csv_file_path, 'w', newline='')
+    file = open(csv_file_path, 'a', newline='')
     writer = csv.writer(file)
     writer.writerow(data)
     file.close()
@@ -22,6 +22,7 @@ if response:
     for detail in details:
         detailList.append(detail.text)
     detailList.append(summary)
+    detailList.append(datetime.now())
     write_csv_file('liveScores.csv', detailList)
     for detail in detailList:
         print(detail)

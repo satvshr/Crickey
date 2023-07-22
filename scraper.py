@@ -3,6 +3,7 @@ import requests
 import csv
 from datetime import datetime
 
+
 def write_csv_file(csv_file_path, data):
     file = open(csv_file_path, 'a', newline='')
     writer = csv.writer(file)

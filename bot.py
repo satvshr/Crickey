@@ -12,7 +12,7 @@ def read_csv_file(csv_file_path):
       time_format = datetime.now().strftime('%H:%M')
       if isinstance(time_format, str):
         last_line = last_line.replace(',', '\n')
-        return last_line
+        return last_line[:-15]
       else:
         raise Exception()
 
